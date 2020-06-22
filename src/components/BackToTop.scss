@@ -1,0 +1,19 @@
+.back-top-button {
+  position: absolute;
+  right: 0;
+  bottom: 20px;
+  width: 32px;
+  height: 32px;
+  border: 1px solid $primary-color;
+  background-color: $white-color;
+  background-image: url("../img/icons/footer-top-arrow.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  box-sizing: border-box;
+  outline: none;
+  cursor: pointer;
+
+  &:hover {
+    border: 1px solid $secondary-color;
+  }
+}

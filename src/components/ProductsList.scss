@@ -1,0 +1,119 @@
+.products {
+  position: relative;
+  
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 16px;
+    row-gap: 40px;
+
+    @media screen and (max-width: 960px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media screen and (max-width: 680px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media screen and (max-width: 480px) {
+      grid-template-columns: 1fr;
+    }
+  }  
+
+  &__filters {
+    display: flex;
+    margin-bottom: 40px;
+
+    @media screen and (max-width: 480px) {
+      flex-direction: column;
+    }
+  }
+
+  &__filter:not(:last-child) {
+    margin-right: 16px;
+
+    @media screen and (max-width: 480px) {
+      margin-right: 0;
+      margin-bottom: 20px;
+    }
+  }
+
+  &__dropdown {
+    position: relative;
+    width: 210px;
+    line-height: 21px;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    box-sizing: border-box;
+    border: 1px solid $input-border-color;
+    outline: none;
+    cursor: pointer;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 5px;
+      width: 16px;
+      height: 100%;
+      background: url("../img/icons/arrow-down.svg") no-repeat;
+      background-position: center center;
+      transform: rotate(0);
+      transition: transform $transition-duration;
+    }
+
+    &--active {
+      border-color: $primary-color;
+
+      &::before {
+        transform: rotate(180deg);
+      }
+    }
+
+    &:hover {
+      border-color: $primary-color;
+    }
+  }
+
+  &__dropdown-list {
+    display: block;
+    position: absolute;
+    width: 210px;
+    height: 402px;
+    box-sizing: border-box;
+    font-size: 14px;
+    font-weight: 500;
+    border: 1px solid $input-border-color;
+    background-color: white;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity $transition-duration;
+    pointer-events: none;
+    overflow: hidden;
+    overflow-y: scroll;
+    
+    &--active {
+      opacity: 1;
+      pointer-events: initial;
+    }
+  }
+
+  &__dropdown-item {
+    display: flex;
+    align-items: center;
+    height: 25px;
+    padding: 7px 10px;
+    transition: background-color $transition-duration;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $input-option-active;
+    }
+
+    &--active {
+      font-weight: 700;
+      background-color: $input-option-active;
+    }
+  }
+}

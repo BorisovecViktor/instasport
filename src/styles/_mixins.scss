@@ -1,0 +1,21 @@
+@mixin scrollbar-style {
+  body::-webkit-scrollbar {
+    width: 0.25rem;
+  }
+
+  body::-webkit-scrollbar-track {
+    background: white;
+  }
+
+  body::-webkit-scrollbar-thumb {
+    background: $primary-color;
+  }
+}
+
+@mixin hover($_property, $_toValue, $_time) {
+  transition: #{$_property} #{$_time}s;
+
+  &:hover {
+    #{$_property}: $_toValue;
+  }
+}

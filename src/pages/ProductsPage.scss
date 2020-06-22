@@ -1,0 +1,11 @@
+.page__title {
+ padding: 20px 0;
+
+  @media screen and (max-width: 680px) {
+    font-size: 25px;
+  }
+
+  @media screen and (max-width: 480px) {
+    font-size: 18px;
+  }
+}
