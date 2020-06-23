@@ -14,3 +14,9 @@ interface Product {
     title: string; 
   };
 }
+
+interface FilterList {
+  [key:string]: boolean;
+}
+
+type FilterListArr = string[];

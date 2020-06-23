@@ -16,8 +16,13 @@ html {
   color: $primary-color;
 }
 
+.main{
+  position: relative;
+  min-height: 100vh;
+}
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 15px;
+  padding: 20px 15px;
 }

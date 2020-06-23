@@ -1,6 +1,4 @@
-.products {
-  position: relative;
-  
+.products {  
   &__list {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -80,7 +78,7 @@
     display: block;
     position: absolute;
     width: 210px;
-    height: 402px;
+    max-height: 402px;
     box-sizing: border-box;
     font-size: 14px;
     font-weight: 500;
@@ -91,7 +89,7 @@
     transition: opacity $transition-duration;
     pointer-events: none;
     overflow: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
     
     &--active {
       opacity: 1;

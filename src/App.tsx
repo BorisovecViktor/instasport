@@ -14,6 +14,7 @@ import HomePage from './pages/HomePage';
 import ProductsPage from './pages/ProductsPage';
 import ProductDetailsPage from './pages/ProductDetailsPage';
 import NotFoundPage from './pages/NotFoundPage';
+import BackToTop from './components/BackToTop';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -38,6 +39,7 @@ const App = () => {
           </Route>
           <Route component={NotFoundPage} />
         </Switch>
+        <BackToTop />
       </main>
     </div>
   );

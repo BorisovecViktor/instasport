@@ -6,9 +6,7 @@ import classNames from 'classnames';
 import * as store from '../store';
 
 import ProductCard from './ProductCard';
-import BackToTop from './BackToTop';
 
-import { CITY_FILTERS, ACTIVITY_FILTERS } from '../constants';
 import { setFilterByCity } from '../store/cityFilter';
 import { setFilterByActivity } from '../store/activityFilter';
 
@@ -19,7 +17,9 @@ const ProductsList = () => {
   const searchParams = new URLSearchParams(location.search);
   const filterByCity = searchParams.get('filterByCity') || '';
   const filterByActivity = searchParams.get('filterByActivity') || '';
-  const visibleProducts = useSelector(store.getVisibleProducts);
+  const visibleProducts = useSelector(store.getFiltredProducts);
+  const cityList = useSelector(store.getFiltredCities);
+  const activityList = useSelector(store.getFiltredActivities);
   const [showCityFilter, setShowCityFilter] = useState(false);
   const [showActivityFilter, setShowActivityFilter] = useState(false);
 
@@ -48,7 +48,16 @@ const ProductsList = () => {
         search: searchParams.toString(),
       });
     }
-  }; 
+  };
+
+  const handleClickToDetails = (
+    e: React.MouseEvent<HTMLLIElement, MouseEvent>,
+    title_short: string
+  ) => {
+    e.preventDefault()
+    history.push(`/clubs/${title_short}`)
+    window.scrollTo(0, 0)
+  }
 
   return (
     <div className="products">
@@ -71,7 +80,15 @@ const ProductsList = () => {
               'products__dropdown-list--active': showCityFilter
             })}
           >
-            {CITY_FILTERS.map(value => (
+            <li
+              className={classNames(
+                'products__dropdown-item', {
+                'products__dropdown-item--active': '' === filterByCity
+              })}
+              onClick={() => filterHandler('')}
+            >
+            </li>
+            {cityList.map(value => (
               <li
                 className={classNames(
                   'products__dropdown-item', {
@@ -105,7 +122,15 @@ const ProductsList = () => {
               'products__dropdown-list--active': showActivityFilter
             })}
           >
-            {ACTIVITY_FILTERS.map(value => (
+            <li
+              className={classNames(
+                'products__dropdown-item', {
+                'products__dropdown-item--active': '' === filterByActivity
+              })}
+              onClick={() => filterHandler('')}
+            >
+            </li>
+            {activityList.map(value => (
               <li
                 className={classNames(
                   'products__dropdown-item', {
@@ -128,17 +153,12 @@ const ProductsList = () => {
               <li
                 className="product__item"
                 key={product.title}
-                onClick={(e) => {
-                  e.preventDefault()
-                  history.push(`/clubs/${product.title_short}`)
-                  window.scrollTo(0, 0)
-                }}
+                onClick={(e) => handleClickToDetails(e, product.title_short)}
               >
                 <ProductCard product={product} />
               </li>
             ))}
           </ul>
-          <BackToTop />
         </>
         :
         <div>
